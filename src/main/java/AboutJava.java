@@ -1,5 +1,5 @@
 public class AboutJava {
     public void printReleaseData(){
-        System.out.println("Java уже здесь!");
+        System.out.println("Java already here!");
     }
 }
