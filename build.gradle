@@ -8,7 +8,9 @@ targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
-    mavenLocal()
+//    mavenLocal()
+//    jcenter()
+//    maven { url 'https://jitpack.io' }
 }
 
 configurations {
@@ -20,11 +22,17 @@ test.testLogging.showStandardStreams = true
 
 dependencies {
 
-    compileOnly 'org.projectlombok:lombok:+'
+    compile 'org.apache.logging.log4j:log4j-api:+',
+            'org.apache.logging.log4j:log4j-core:+'//,
+//            'io.vavr:vavr:+',
+//            'com.aol.simplereact:cyclops-react:+',
+//            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT'
 
-//    testCompile 'org.junit.jupiter:junit-jupiter-api:+',
-////                'org.spockframework:spock-core:1.0-groovy-2.4',
-//            'org.hamcrest:java-hamcrest:+'
+    compileOnly 'org.projectlombok:lombok:+'//,
+//            'edu.washington.cs.types.checker:checker-framework:+'
+
+    testCompile 'org.junit.jupiter:junit-jupiter-api:+',
+            'org.hamcrest:java-hamcrest:+'
 }
 
 task wrapper(type: Wrapper) {
