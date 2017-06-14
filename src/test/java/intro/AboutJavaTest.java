@@ -1,25 +1,41 @@
 package intro;
 
-import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
+import lombok.SneakyThrows;
+import lombok.val;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 class AboutJavaTest {
 
+    private final String LINE_SEPARATOR = System.getProperty("line.separator");
+
     @Test
     void printReleaseData() {
-        PrintStream out = System.out;
-        ByteOutputStream out1 = new ByteOutputStream();
-        PrintStream out2 = new PrintStream(out1);
-        System.setOut(out2);
-        AboutJava aboutJava = new AboutJava();
-        aboutJava.printReleaseData();
-        System.setOut(out);
+        assertThat(fromSystemOut(new AboutJava()::printReleaseData),
+                is("Java already here!" + LINE_SEPARATOR));
+    }
 
-        assertTrue(new String(out1.getBytes()).startsWith("Java already here!\n"));
+    @SneakyThrows
+    private static String fromSystemOut(Runnable runnable) {
+
+        PrintStream realOut = System.out;
+
+        try (val out = new ByteArrayOutputStream();
+             val printStream = new PrintStream(out)) {
+
+            System.setOut(printStream);
+            runnable.run();
+
+            return new String(out.toByteArray()).intern();
+
+        } finally {
+            System.setOut(realOut);
+        }
     }
 
 }
