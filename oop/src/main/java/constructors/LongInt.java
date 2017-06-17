@@ -1,4 +1,4 @@
-package intro.constructors;
+package constructors;
 
 public class LongInt extends Int {
 }

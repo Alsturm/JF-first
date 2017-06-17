@@ -1,40 +1,42 @@
-group 'ru.vlapin'
-version '1.0-SNAPSHOT'
+subprojects {
+    group 'ru.vlapin'
+    version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
+    apply plugin: 'java'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
-repositories {
-    mavenCentral()
-//    mavenLocal()
-//    jcenter()
-//    maven { url 'https://jitpack.io' }
-}
+    repositories {
+        mavenCentral()
+    //    mavenLocal()
+    //    jcenter()
+    //    maven { url 'https://jitpack.io' }
+    }
 
-configurations {
-    testCompile.extendsFrom compileOnly
-}
+    configurations {
+        testCompile.extendsFrom compileOnly
+    }
 
-// this turns logging on in tests:
-test.testLogging.showStandardStreams = true
+    // this turns logging on in tests:
+    test.testLogging.showStandardStreams = true
 
-dependencies {
+    dependencies {
 
-    compile 'org.apache.logging.log4j:log4j-api:+',
-            'org.apache.logging.log4j:log4j-core:+'//,
-//            'io.vavr:vavr:+',
-//            'com.aol.simplereact:cyclops-react:+',
-//            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT'
+        compile 'org.apache.logging.log4j:log4j-api:+',
+                'org.apache.logging.log4j:log4j-core:+'//,
+    //            'io.vavr:vavr:+',
+    //            'com.aol.simplereact:cyclops-react:+',
+    //            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT'
 
-    compileOnly 'org.projectlombok:lombok:+'//,
-//            'edu.washington.cs.types.checker:checker-framework:+'
+        compileOnly 'org.projectlombok:lombok:+'//,
+    //            'edu.washington.cs.types.checker:checker-framework:+'
 
-    testCompile 'org.junit.jupiter:junit-jupiter-api:+',
-            'org.hamcrest:java-hamcrest:+'
+        testCompile 'org.junit.jupiter:junit-jupiter-api:+',
+                'org.hamcrest:java-hamcrest:+'
+    }
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.5'
+    gradleVersion = '4.0'
 }
