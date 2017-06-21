@@ -1,5 +1,8 @@
 package objects;
 
+import lombok.Value;
+
+@Value
 public class Pen {
     private int price;
     private String producerName;

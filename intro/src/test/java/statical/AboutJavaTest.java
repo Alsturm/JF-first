@@ -1,5 +1,6 @@
-package intro;
+package statical;
 
+import intro.AboutJava;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.junit.jupiter.api.Test;
