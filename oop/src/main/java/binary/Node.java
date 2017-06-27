@@ -4,6 +4,7 @@ import lombok.*;
 
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
+@ToString(exclude = "parent")
 public class Node {
     private final int value;
     private Node left;
@@ -26,26 +27,40 @@ public class Node {
     }
 
     public int getStepCount(@NonNull Node target) {
+        return getStepCount(target, null);
+    }
+
+    private int getStepCount(Node target, Node checkedNode) {
         if (this == target) return 0;
 
         int stepCount;
 
         if (target.value < value) {
-            stepCount = left.getStepCount(target);
-            if (stepCount != -1)
-                return stepCount;
-            else
-                return parent.getStepCount(target);
+            if (left == checkedNode || left == null) return -1;
+
+            stepCount = left.getStepCount(target, this);
+
+            return goUp(target, checkedNode, stepCount);
         }
 
-        stepCount = right.getStepCount(target);
-        if (stepCount != -1)
-            return stepCount;
-        else
-            return -1; // TODO: 23/06/2017 вернуть корректное значение!!!
+        if (right == checkedNode || right == null)
+            return stepUp(target, checkedNode);
+
+        stepCount = right.getStepCount(target, this);
+        return goUp(target, checkedNode, stepCount);
     }
 
-    private int getStepCount(Node node, Node checked) {
-        return 0;
+    private int goUp(Node target, Node checkedNode, int stepCount) {
+        if (stepCount != -1)
+            return stepCount + 1;
+        else return stepUp(target, checkedNode);
+    }
+
+    private int stepUp(Node target, Node checkedNode) {
+        int stepCount;
+        if (checkedNode != parent) {
+            stepCount = parent.getStepCount(target, this);
+            return stepCount == -1 ? -1 : stepCount + 1;
+        } else return -1;
     }
 }
