@@ -1,10 +1,12 @@
 package binary;
 
 import lombok.*;
+import lombok.extern.log4j.Log4j2;
 
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString(exclude = "parent")
+@Log4j2
 public class Node {
     private final int value;
     private Node left;
@@ -16,14 +18,13 @@ public class Node {
     }
 
     public Node addOrGet(int value) {
-        if (this.value == value) return this;
+        return this.value == value ? this :
+                value < this.value ?
+                        left == null ? left = new Node(value, this) :
+                                left.addOrGet(value) :
+                        right == null ? right = new Node(value, this) :
+                                right.addOrGet(value);
 
-        if (value < this.value)
-            if (left == null) return left = new Node(value, this);
-            else return left.addOrGet(value);
-
-        if (right == null) return right = new Node(value, this);
-        else return right.addOrGet(value);
     }
 
     public int getStepCount(@NonNull Node target) {
@@ -31,6 +32,7 @@ public class Node {
     }
 
     private int getStepCount(Node target, Node checkedNode) {
+        log.info("+1");
         if (this == target) return 0;
 
         int stepCount;

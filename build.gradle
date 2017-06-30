@@ -23,13 +23,14 @@ subprojects {
 
     dependencies {
 
-        compile 'org.apache.logging.log4j:log4j-api:+',
-                'org.apache.logging.log4j:log4j-core:+'//,
-    //            'io.vavr:vavr:+',
-    //            'com.aol.simplereact:cyclops-react:+',
-    //            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT'
+        compile 'org.apache.logging.log4j:log4j-core:+',
+                'org.openjdk.jmh:jmh-core:+',
+                'io.vavr:vavr:+'//,
+    //            'com.aol.simplereact:cyclops-react:+'//,
+    //            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT'//,
 
-        compileOnly 'org.projectlombok:lombok:+'//,
+        compileOnly 'org.projectlombok:lombok:+',
+                'org.openjdk.jmh:jmh-generator-annprocess:+'//,
     //            'edu.washington.cs.types.checker:checker-framework:+'
 
         testCompile 'org.junit.jupiter:junit-jupiter-api:+',

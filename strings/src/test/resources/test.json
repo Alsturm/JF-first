@@ -1,0 +1,24 @@
+{
+  "id": 0,
+  "meta": {
+    "id": 1,
+    "property1": "value1",
+    "property2": "value2",
+    "property3": "value3",
+    "total_count": 2
+  },
+  "objects": [
+    {
+      "id": 2,
+      "property4": "value4",
+      "property5": "value5",
+      "propertyN": "valueN"
+    },
+    {
+      "id": 3,
+      "propertyN+1": "valueN + 1",
+      "propertyN+2": "valueN+2",
+      "propertyM": "valueM"
+    }
+  ]
+}

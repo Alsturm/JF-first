@@ -2,4 +2,5 @@ rootProject.name = 'JF-first'
 
 include 'core',
         'intro',
-        'oop'
+        'oop',
+        'strings'
