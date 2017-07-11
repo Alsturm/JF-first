@@ -33,11 +33,12 @@ subprojects {
                 'org.openjdk.jmh:jmh-generator-annprocess:+'//,
     //            'edu.washington.cs.types.checker:checker-framework:+'
 
-        testCompile 'org.junit.jupiter:junit-jupiter-api:5.0.0-M4',
+        testCompile 'org.junit.jupiter:junit-jupiter-api:+',
                 'org.hamcrest:java-hamcrest:+'
     }
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.0'
+    gradleVersion = '4.0.1'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
 }
