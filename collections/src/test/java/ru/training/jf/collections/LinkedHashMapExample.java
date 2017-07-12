@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-public class LinkedHashMapExample {
+class LinkedHashMapExample {
+
     @Test
     void name() {
-        Map<String, Integer> linkedHashMap
-                = new LinkedHashMap<>(16, 0.75f, false);
+        Map<String, Integer> linkedHashMap = new LinkedHashMap<>(16, 0.75f, false);
         linkedHashMap.put("Smith", 30);
         linkedHashMap.put("Anderson", 31);
         linkedHashMap.put("Lewis", 29);
@@ -16,7 +16,7 @@ public class LinkedHashMapExample {
 
         System.out.println(linkedHashMap);
 
-        System.out.printf("%nThe age for Lewis is %d%n", linkedHashMap.get("Lewis").intValue());
+        System.out.printf("%nThe age for Lewis is %d%n", linkedHashMap.get("Lewis"));
 
         System.out.println(linkedHashMap);
     }

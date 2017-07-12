@@ -9,9 +9,9 @@ subprojects {
 
     repositories {
         mavenCentral()
-    //    mavenLocal()
-    //    jcenter()
-    //    maven { url 'https://jitpack.io' }
+//        mavenLocal()
+//        jcenter()
+        maven { url 'https://jitpack.io' }
     }
 
     configurations {
@@ -25,15 +25,16 @@ subprojects {
 
         compile 'org.apache.logging.log4j:log4j-core:+',
                 'org.openjdk.jmh:jmh-core:+',
-                'io.vavr:vavr:+'//,
-    //            'com.aol.simplereact:cyclops-react:+'//,
-    //            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT'//,
+//                'com.aol.simplereact:cyclops-react:+',
+                'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT'//,
+//                'io.vavr:vavr:+'
 
         compileOnly 'org.projectlombok:lombok:+',
-                'org.openjdk.jmh:jmh-generator-annprocess:+'//,
-    //            'edu.washington.cs.types.checker:checker-framework:+'
+//                'edu.washington.cs.types.checker:checker-framework:+',
+                'org.openjdk.jmh:jmh-generator-annprocess:+'
 
         testCompile 'org.junit.jupiter:junit-jupiter-api:+',
+                'org.mockito:mockito-core:+',
                 'org.hamcrest:java-hamcrest:+'
     }
 }
