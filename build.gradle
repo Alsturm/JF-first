@@ -33,7 +33,7 @@ subprojects {
 //                'edu.washington.cs.types.checker:checker-framework:+',
                 'org.openjdk.jmh:jmh-generator-annprocess:+'
 
-        testCompile 'org.junit.jupiter:junit-jupiter-api:5.0.0-M4',
+        testCompile 'org.junit.jupiter:junit-jupiter-api:+',
                 'org.mockito:mockito-core:+',
                 'org.hamcrest:java-hamcrest:+'
     }

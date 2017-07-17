@@ -2,7 +2,7 @@ package ru.training.jf.algorithms;
 
 import java.math.BigInteger;
 
-public class PowRecurve {
+public class PowerRecurve {
     private static BigInteger result;
     //Get rid of recurve fork using variable temp
     private static BigInteger temp;

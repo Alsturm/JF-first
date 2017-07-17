@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.math.BigInteger;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static ru.training.jf.algorithms.PowRecurve.*;
+import static ru.training.jf.algorithms.PowerRecurve.*;
 
-class PowRecurveTest {
+class PowerRecurveTest {
     @Test
     void powTest() {
         assertThat(pow(new BigInteger("0"), 0), Is.is(new BigInteger("1")));
