@@ -37,4 +37,11 @@ class ArrayTest {
         assertThat(Array.lastIndexOf(55, integers), is(-1));
     }
 
+    @Test
+    void binarySearch() {
+        Integer[] integers = {1,2,3,4,5,6,8,9};
+        assertThat(Array.binarySearch(7, integers), is(-6));
+        assertThat(Array.binarySearch(4, integers), is(3));
+//        assertThat(Array.binarySearch(null, 4, integers), is(3));
+    }
 }

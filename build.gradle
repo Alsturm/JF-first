@@ -30,7 +30,7 @@ subprojects {
                 'io.vavr:vavr:+'
 
         compileOnly 'org.projectlombok:lombok:+',
-//                'edu.washington.cs.types.checker:checker-framework:+',
+                'edu.washington.cs.types.checker:checker-framework:+',
                 'org.openjdk.jmh:jmh-generator-annprocess:+'
 
         testCompile 'org.junit.jupiter:junit-jupiter-api:+',
