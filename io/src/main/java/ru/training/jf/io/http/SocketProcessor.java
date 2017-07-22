@@ -23,14 +23,15 @@ public class SocketProcessor implements Runnable {
 
     SocketProcessor(Socket s) throws Throwable {
         this.s = s;
-        this.is = s.getInputStream();
-        this.os = s.getOutputStream();
+        is = s.getInputStream();
+        os = s.getOutputStream();
     }
 
     public void run() {
         try {
-            readInputHeaders();
-            writeResponse("<html><body><h1>Привет от Habrahabr`а!..</h1></body></html>");
+            writeResponse(
+                    mapRequest(getHttpRequest())
+            );
         } catch (Throwable t) {
                 /*do nothing*/
         } finally {
@@ -43,17 +44,22 @@ public class SocketProcessor implements Runnable {
         log.info("Client processing finished");
     }
 
+    private String mapRequest(HttpRequest httpRequest) {
+        return "<html><body><h1>Привет от Habrahabr`а!..</h1></body></html>";
+    }
+
     private void writeResponse(String s) throws Throwable {
         os.write(String.format(RESPONSE, s.length(), s).getBytes());
         os.flush();
     }
 
-    private void readInputHeaders() throws Throwable {
+    private HttpRequest getHttpRequest() throws Throwable {
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String s;
         while ((s = br.readLine()) != null && !s.trim().isEmpty()) {
             // TODO: 22/07/2017 сохранить заголовки в экземпляр интерфейса запроса
             log.info(s);
         }
+        return HttpRequest.from(null, null, null, null, null);
     }
 }
