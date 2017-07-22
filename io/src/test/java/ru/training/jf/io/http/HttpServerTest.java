@@ -60,7 +60,7 @@ class HttpServerTest {
 //                    .filter(s -> s.trim().length() > 0)
                     .collect(Collectors.joining("\r\n"));
 
-            String s = "<html><body><h1>Привет от Habrahabr`а!..</h1></body></html>";
+            String s = HelloWorldServer.HTML;
             assertThat(response, is(String.format(RESPONSE, s.length(), s)));
 
 //            String line;
