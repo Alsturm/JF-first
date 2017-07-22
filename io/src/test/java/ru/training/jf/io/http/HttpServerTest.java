@@ -9,6 +9,11 @@ import org.junit.jupiter.api.Test;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static ru.training.jf.io.http.SocketProcessor.RESPONSE;
 
 @Log4j2
 class HttpServerTest {
@@ -51,10 +56,17 @@ class HttpServerTest {
             outputStream.write(REQUEST.getBytes());
 //            outputStream.close();
 
-            String line;
-            while ((line = reader.readLine()) != null && !line.trim().isEmpty()) {
-                log.info(line);
-            }
+            String response = reader.lines()
+//                    .filter(s -> s.trim().length() > 0)
+                    .collect(Collectors.joining("\r\n"));
+
+            String s = "<html><body><h1>Привет от Habrahabr`а!..</h1></body></html>";
+            assertThat(response, is(String.format(RESPONSE, s.length(), s)));
+
+//            String line;
+//            while ((line = reader.readLine()) != null && !line.trim().isEmpty()) {
+//                log.info(line);
+//            }
         }
     }
 
