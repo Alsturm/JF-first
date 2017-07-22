@@ -49,6 +49,8 @@ class HttpServerTest {
                              socket.getInputStream()))) {
 
             outputStream.write(REQUEST.getBytes());
+//            outputStream.close();
+
             String line;
             while ((line = reader.readLine()) != null && !line.trim().isEmpty()) {
                 log.info(line);

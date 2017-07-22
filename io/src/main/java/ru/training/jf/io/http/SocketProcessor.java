@@ -1,12 +1,16 @@
 package ru.training.jf.io.http;
 
 import lombok.extern.log4j.Log4j2;
+import lombok.val;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 @Log4j2
 public class SocketProcessor implements Runnable {
@@ -55,11 +59,38 @@ public class SocketProcessor implements Runnable {
 
     private HttpRequest getHttpRequest() throws Throwable {
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        String s;
+        String s = br.readLine().trim();
+
+        String[] contentAndTail = s.split("\\s", 2);
+        HttpMethod httpMethod = HttpMethod.valueOf(contentAndTail[0]);
+
+        contentAndTail = contentAndTail[1].split("[?\\s]", 2);
+        String path = contentAndTail[0];
+
+        Map<String, String> params = contentAndTail[1].startsWith("HTTP") ?
+                Collections.emptyMap() :
+                getParams(contentAndTail[1].split("\\s", 2)[0]);
+
+        val headers = new HashMap<String, String>();
         while ((s = br.readLine()) != null && !s.trim().isEmpty()) {
-            // TODO: 22/07/2017 сохранить заголовки в экземпляр интерфейса запроса
-            log.info(s);
+            String[] header = s.split(":\\s", 2);
+            headers.put(header[0], header[1]);
         }
-        return HttpRequest.from(null, null, null, null, null);
+
+        val body = new StringBuilder();
+        if (httpMethod == HttpMethod.POST || httpMethod == HttpMethod.PUT)
+            while (br.ready() && (s = br.readLine()) != null)
+                body.append(s);
+
+        return HttpRequest.from(httpMethod, path, params, headers, body.toString());
+    }
+
+    private Map<String, String> getParams(String s) {
+        val params = new HashMap<String, String>();
+        for (String param : s.split("&")) {
+            String[] split = param.split("=", 2);
+            params.put(split[0], split[1]);
+        }
+        return params;
     }
 }
