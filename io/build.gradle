@@ -1,0 +1,7 @@
+apply plugin: 'application'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ru.training.jf.io.http.HttpServer'
+    }
+}
